@@ -24,9 +24,15 @@ public class ApiController {
         return services.getStudentAll();
     }
 
-    @GetMapping("/{id}")
-    private Student getStudent(@PathVariable("id") Long id){
-        return services.getStudentById(id);
+    @GetMapping("/get/{id}")
+    private Student getStudent(@PathVariable Long id){
+    	Student s = new Student();
+    	try {
+			s = services.getStudentById(id);
+		} catch (Exception e) {
+			System.out.println("ApiController.getStudent()" + e);
+		}
+        return s;
     }
 
     @DeleteMapping
